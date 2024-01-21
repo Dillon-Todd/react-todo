@@ -10,8 +10,20 @@ const TodoList = () => {
   };
 
   const deleteTodo = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const toggleComplete = (id) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
     setTodos(newTodos);
+  };
+
+  const updateTodo = (id, task) => {
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, task: task } : todo))
+    );
   };
 
   return (
@@ -19,7 +31,13 @@ const TodoList = () => {
       <h1>Get Things Done !</h1>
       <TodoForm addTodo={addTodo} />
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          deleteTodo={deleteTodo}
+          toggleComplete={toggleComplete}
+          updateTodo={updateTodo}
+        />
       ))}
     </div>
   );
