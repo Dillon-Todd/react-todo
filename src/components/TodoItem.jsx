@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const TodoItem = ({ todo }) => {
   return (
     <div className="todo-item">
-      <p>{todo}</p>
+      <p>{todo.task}</p>
       <div>
         <FontAwesomeIcon icon={faPenToSquare} className="edit-icon" />
         <FontAwesomeIcon icon={faTrash} className="delete-icon" />
